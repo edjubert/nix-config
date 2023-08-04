@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673956053,
+        "narHash": "sha256-4gtG9iQuiKITOjNQQeQIpoIB6b16fm+504Ch3sNKLd8=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "35bb57c0c8d8b62bbfd284272c928ceb64ddbde9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1691003216,
+        "narHash": "sha256-Qq/MPkhS12Bl0X060pPvX3v9ac3f2rRQfHjjozPh/Qs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4a56ce9727a0c5478a836a0d8a8f641c5b9a3d5f",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "tuxedo-nixos": "tuxedo-nixos"
+      }
+    },
+    "tuxedo-nixos": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1690881354,
+        "narHash": "sha256-sNoTuwFZtSBXn18Kgwv0DIrf9Tycqi51kP8EudiX7iY=",
+        "owner": "blitz",
+        "repo": "tuxedo-nixos",
+        "rev": "90216862484b93f5cd26c9274a7da4625d167298",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blitz",
+        "repo": "tuxedo-nixos",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
