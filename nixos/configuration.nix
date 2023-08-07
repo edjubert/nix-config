@@ -12,11 +12,69 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
-    timeout = 0;
+    timeout = 1;
     systemd-boot.enable = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
+  systemd.user.services = {
+    polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+	Restart = "on-failure";
+	RestartSec = 1;
+	TimeoutStopsec = 10;
+      };
+    };
+    xdg-desktop-portal-gtk = {
+      description = "xdg-desktop-portal-gtk";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "/etc/systemd/user/xdg-desktop-portal-gtk";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopsec = 10;
+      };
+    };
+    xdg-desktop-portal-hyprland = {
+      description = "xdg-desktop-portal-hyprland";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      # after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+	ExecStart = "/etc/systemd/user/xdg-desktop-portal-hyprland";
+	Restart = "on-failure";
+	RestartSec = 1;
+	TimeoutStopsec = 10;
+      };
+    };
+
+  };
 
   boot.kernelParams = [
     "quiet"
@@ -42,15 +100,13 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
-  xdg.portal = {
-    enable = true;
+  console = {
+    # font = "Lat2-Terminus16";
+    keyMap = "colemak";
+    useXkbConfig = false; # use xkbOptions in tty.
   };
+
+  # xdg.portal.enable = true;
 
   programs.fish.enable = true;
   programs.light.enable = true;
@@ -58,7 +114,7 @@
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1u"
+    "openssl-1.1.1v"
     "nodejs-14.21.3"
     "electron-13.6.9"
   ];
@@ -74,13 +130,9 @@
   };
 
   hardware = {
-    tuxedo-keyboard.enable = true;
+    # tuxedo-keyboard.enable = true;
 
-    nvidia = {
-      modesetting.enable = true;
-      open = false;
-      nvidiaSettings = false;
-    };
+    nvidia.modesetting.enable = true;
   };
 
   sound.enable = true;
@@ -96,7 +148,7 @@
   users.users.edjubert = {
     isNormalUser = true;
     description = "edjubert";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
     shell = pkgs.fish;
   };
 

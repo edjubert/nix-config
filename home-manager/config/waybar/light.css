@@ -1,0 +1,226 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 0px;
+}
+
+window#waybar {
+    background: rgba(220, 224, 232, 0);
+}
+
+tooltip {
+    background: #9ca0b0;
+    color: #4c4f69;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccd0da;
+}
+
+#workspaces button {
+    box-shadow: none;
+	  text-shadow: none;
+    padding: 0px;
+    border-radius: 7px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: #4c4f69;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active {
+    background: #5c5f77;
+    color: #dce0e8;
+    margin-left: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    background: #dc8a78;
+    color: #dce0e8;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#cpu,
+#memory,
+#custom-power,
+#custom-layout,
+#clock,
+#workspaces,
+#window,
+#custom-updates,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-wallchange,
+#custom-waybar-mpris,
+#custom-mode,
+#tray {
+    color: #4c4f69;
+    background: #9ca0b0;
+    opacity: 1;
+    padding: 0px;
+    margin: 3px 0px 3px 0px;
+}
+
+
+/* resource monitor block */
+
+#cpu {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#battery {
+    /* border-radius: 10px 0px 0px 10px; */
+    border-radius: 10px;
+    margin-left: 4px;
+    padding-left: 14px;
+    padding-right: 20px;
+}
+
+#memory {
+    border-radius: 0px 10px 10px 0px;
+    border-left-width: 0px;
+    padding-left: 4px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+/* date time block */
+#clock {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+#clock.calendar {
+    border-radius: 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+
+#workspaces {
+    /* border-radius: 10px 0px 0px 10px; */
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#window {
+    /* border-radius: 0px 10px 10px 0px; */
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+#custom-layout {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+#custom-waybar-mpris {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+/* control center block */
+#custom-updates {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#network {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+#bluetooth {
+    padding-left: 4px;
+    padding-right: 4px;
+} 
+
+#pulseaudio {
+    border-radius: 10px 0 0 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#pulseaudio.microphone {
+    border-radius: 0 10px 10px 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 12px;
+}
+
+#custom-wallchange {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+
+/* system tray block */
+
+#custom-mode {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#tray {
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 10px;
+}
+
+#custom-power {
+    /* border-radius: 0px 10px 10px 0px; */
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 15px;
+    margin-left: 10px;
+}
+
+#mediaplayer {
+    background: #ffffff;
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 15px;
+    margin-left: 10px;
+}

@@ -2,11 +2,9 @@
   description = "Home Manager configuration of edjubert";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -18,7 +16,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      homeConfigurations."edjubert@nixos" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."edjubert" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [
@@ -26,15 +24,12 @@
 	  hyprland.homeManagerModules.default
 	  {
 	    wayland.windowManager.hyprland = {
-	      enable = true;
+              enable = true;
 	      nvidiaPatches = true;
 	      xwayland.enable = true;
 	    };
 	  }
 	];
-
       };
-
-      nixpkgs.config.allowUnfree = true;
     };
 }

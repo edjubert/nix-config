@@ -1,0 +1,9 @@
+plugins:
+  - "scratchpads"
+  - "expose"
+  - "float"
+  - "monitors"
+
+options:
+  float:
+    offset: 0.01

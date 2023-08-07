@@ -4,6 +4,9 @@
   home.username = "edjubert";
   home.homeDirectory = "/home/edjubert";
   home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
@@ -19,23 +22,35 @@
   };
 
   home.packages = with pkgs; [
-    path:~/gophrland/flake.nix
-    jetbrains-toolbox
     rofi
     swww
+    deno
+    lazygit
+    whitesur-icon-theme
+    wlogout
+    rustup
+    jetbrains.idea-ultimate
+    jetbrains.datagrip
+    networkmanagerapplet
     _1password
     _1password-gui
     firefox
     killall
-    iosevka
+    nerdfonts
     wl-clipboard
     whatsapp-for-linux
+    swaylock-effects
     gh
     git
+    (mpv.override {
+      scripts = [mpvScripts.mpris];
+    })
     alacritty
+    gammastep
     htop
     bat
     gnomeExtensions.appindicator
+    wdisplays
     gnomeExtensions.tray-icons-reloaded
     direnv
     fzf
@@ -44,13 +59,16 @@
     ripgrep
   ];
 
-  xdg.configFile."alacritty".source = ./alacritty;
-  xdg.configFile."fish".source = ./fish;
-  xdg.configFile."swww".source = ./swww;
-  xdg.configFile."rofi".source = ./rofi;
-  xdg.configFile."swaync".source = ./swaync;
-  xdg.configFile."wlogout".source = ./wlogout;
-  xdg.configFile."waybar".source = ./waybar;
+  fonts.fontconfig.enable = true;
+
+  xdg.configFile."alacritty".source = ./config/alacritty;
+  xdg.configFile."gophrland".source = ./config/gophrland;
+  xdg.configFile."fish".source = ./config/fish;
+  xdg.configFile."rofi".source = ./config/rofi;
+  xdg.configFile."lvim".source = ./config/lvim;
+  xdg.configFile."swaync".source = ./config/swaync;
+  xdg.configFile."wlogout".source = ./config/wlogout;
+  xdg.configFile."waybar".source = ./config/waybar;
 
   programs.git = {
     enable = true;
@@ -95,7 +113,7 @@
       gaps_in = 10
       gaps_out = 10
       border_size = 1
-      col.active_border = rgba(47ffffff) rgba(04ccc2ff)
+      col.active_border = rgba(47ffffff) rgba(5cdd96ff) 45deg
       col.inactive_border = rgba(595959aa)
 
       layout = dwindle
@@ -123,11 +141,11 @@
     
     decoration {
       rounding = 10
-      blur = yes
-      blur_size = 3
-      blur_passes = 5
-      blur_ignore_opacity = false
-      blur_new_optimizations = true
+      # blur = true
+      # blur_size = 3
+      # blur_passes = 5
+      # blur_ignore_opacity = false
+      # blur_new_optimizations = true
 
       dim_special = 0.5
       dim_around = 0.2
@@ -135,8 +153,10 @@
       drop_shadow = true
       shadow_range = 4
       shadow_render_power = 3
-      shadow_scale = 1.0
-      col.shadow = rgba(1a1a1aee)
+      # shadow_scale = 1.0
+      col.shadow = rgba(ee1a1a1a)
+      col.shadow_inactive = rgba(ee1a1a1a)
+      shadow_offset = [10 10]
     }
 
     # <==== INPUTS ====>
@@ -264,6 +284,26 @@
     bind   = $mod SHIFT  , LEFT  , exec           , hyprland-relative-workspace b --with-window
     bind   = $mod SHIFT  , RIGHT , exec           , hyprland-relative-workspace f --with-window
 
+    $xdg = $HOME/.config
+    $scripts = $xdg/.config/home-manager/scripts
+    $lockscreen = $scripts/lockscreen
+    $screenshot = $scripts/screenshot
+
+    exec-once = waybar --config $xdg/waybar/config.jsonc
+    exec-once = waybar --config $xdg/waybar/window-title.jsonc
+    exec-once = nm-applet
+
+    exec-once = sh $scripts/xdg
+
+    exec-once = wl-paste --type text --watch cliphist store
+    exec-once = wl-paste --type image --watch cliphist store
+
+    exec-once = swayidle -w timeout 1200 '$lockscreen' timeout 1200 'hyprctl dispatch dpms off'
+    exec-once = swww-daemon
+    exec-once = swaync
+    exec-once = gammastep
+
+    exec-once = gophrland daemon --config $xdg/gophrland/gophrland.yaml
   '';
 
   # Let Home Manager install and manage itself.
