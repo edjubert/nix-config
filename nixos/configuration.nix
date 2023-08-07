@@ -53,11 +53,11 @@
       wants = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       serviceConfig = {
-        Type = "simple";
+        Type = "oneshot";
         ExecStart = "/etc/systemd/user/xdg-desktop-portal-gtk";
         Restart = "on-failure";
         RestartSec = 1;
-        TimeoutStopsec = 10;
+        TimeoutStopSec = 10;
       };
     };
     xdg-desktop-portal-hyprland = {
@@ -66,11 +66,11 @@
       wants = [ "graphical-session.target" ];
       # after = [ "graphical-session.target" ];
       serviceConfig = {
-        Type = "simple";
-	ExecStart = "/etc/systemd/user/xdg-desktop-portal-hyprland";
-	Restart = "on-failure";
-	RestartSec = 1;
-	TimeoutStopsec = 10;
+        Type = "oneshot";
+        ExecStart = "/etc/systemd/user/xdg-desktop-portal-hyprland";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
     };
 
