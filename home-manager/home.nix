@@ -69,6 +69,7 @@
   xdg.configFile."swaync".source = ./config/swaync;
   xdg.configFile."wlogout".source = ./config/wlogout;
   xdg.configFile."waybar".source = ./config/waybar;
+  xdg.configFile."ideavim".source = ./config/ideavim;
 
   programs.git = {
     enable = true;
