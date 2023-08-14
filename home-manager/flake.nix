@@ -9,9 +9,10 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    gophrland.url = "github:edjubert/gophrland";
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, gophrland, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -20,16 +21,16 @@
         inherit pkgs;
 
         modules = [
-	  ./home.nix
-	  hyprland.homeManagerModules.default
-	  {
-	    wayland.windowManager.hyprland = {
+          ./home.nix
+          hyprland.homeManagerModules.default
+          {
+            wayland.windowManager.hyprland = {
               enable = true;
-	      nvidiaPatches = true;
-	      xwayland.enable = true;
-	    };
-	  }
-	];
+              nvidiaPatches = true;
+              xwayland.enable = true;
+            };
+          }
+        ];
       };
     };
 }

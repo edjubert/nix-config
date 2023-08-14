@@ -13,7 +13,10 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     timeout = 1;
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10;
+    };
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
@@ -25,6 +28,11 @@
     ];
   };
 
+  # virtualisation.virtualbox.host = {
+  #   enable = true;
+  #   enableExtensionPack = true;
+  # };
+  users.extraGroups.vboxusers.members = [ "edjubert" ];
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -47,27 +55,15 @@
 	TimeoutStopsec = 10;
       };
     };
-    xdg-desktop-portal-gtk = {
-      description = "xdg-desktop-portal-gtk";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "/etc/systemd/user/xdg-desktop-portal-gtk";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-    xdg-desktop-portal-hyprland = {
-      description = "xdg-desktop-portal-hyprland";
+    xdg-desktop-portal-for-hyprland = {
+      description = "xdg-desktop-portal-for-hyprland";
       wantedBy = [ "graphical-session.target" ];
       wants = [ "graphical-session.target" ];
       # after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "/etc/systemd/user/xdg-desktop-portal-hyprland";
+        ExecStart = "/home/edjubert/.config/home-manager/scripts/xdg-portal start";
+	ExecStop = "/home/edjubert/.config/home-manager/scripts/xdg-portal stop";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -109,6 +105,7 @@
   # xdg.portal.enable = true;
 
   programs.fish.enable = true;
+  programs.hyprland.enable = true;
   programs.light.enable = true;
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
@@ -147,13 +144,14 @@
 
   users.users.edjubert = {
     isNormalUser = true;
-    description = "edjubert";
+    description = "Edouard";
     extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
     shell = pkgs.fish;
   };
 
   users.users.namoureuse = {
     isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" ];
     description = "Namoureuse";
   };
 

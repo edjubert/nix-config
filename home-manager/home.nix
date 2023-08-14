@@ -305,6 +305,8 @@
     exec-once = gammastep
 
     exec-once = gophrland daemon --config $xdg/gophrland/gophrland.yaml
+
+    exec-once = tuxedo-control-center
   '';
 
   # Let Home Manager install and manage itself.
