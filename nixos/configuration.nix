@@ -77,6 +77,7 @@
     "tuxedo_keyboard.mode=0"
     "tuxedo_keyboard.brightness=25"
     "tuxedo_keyboard.color_left=0x0000ff"
+    "module_blacklist=i915"
   ];
 
 
@@ -116,8 +117,16 @@
     "electron-13.6.9"
   ];
 
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
+
   services.xserver = {
-    displayManager.gdm.enable = true;
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
     desktopManager.gnome.enable = true;
 
     enable = true;
@@ -130,6 +139,7 @@
     # tuxedo-keyboard.enable = true;
 
     nvidia.modesetting.enable = true;
+    nvidia.powerManagement.enable = true;
   };
 
   sound.enable = true;
@@ -160,6 +170,14 @@
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
+    MUTTER_ALLOW_HYBRID_GPUS = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_WEBRENDER = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    VDPAU_DRIVER = "nvidia";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    EGL_PLATFORM = "wayland";
+    GST_VAAPI_ALL_DRIVERS = "1";
   };
 
   environment.systemPackages = with pkgs; [

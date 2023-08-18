@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "edjubert";
@@ -28,7 +28,9 @@
     lazygit
     whitesur-icon-theme
     wlogout
+    go
     rustup
+    pulsemixer
     jetbrains.idea-ultimate
     jetbrains.datagrip
     networkmanagerapplet
@@ -40,6 +42,8 @@
     wl-clipboard
     whatsapp-for-linux
     swaylock-effects
+    libimobiledevice
+    ifuse
     gh
     git
     (mpv.override {
@@ -267,6 +271,7 @@
     bind   = $mod        , W     , exec           , firefox
     bind   = $mod        , D     , exec           , rofi -show drun
     bind   = $mod SHIFT  , D     , exec           , rofi -show run
+    bind   = $mod        , Q     , exec           , $lockscreen
 
     # Gophrland
     bind   = $mod        , O     , exec           , gophrland monitors focus next
@@ -286,7 +291,7 @@
     bind   = $mod SHIFT  , RIGHT , exec           , hyprland-relative-workspace f --with-window
 
     $xdg = $HOME/.config
-    $scripts = $xdg/.config/home-manager/scripts
+    $scripts = $xdg/home-manager/scripts
     $lockscreen = $scripts/lockscreen
     $screenshot = $scripts/screenshot
 
@@ -301,12 +306,25 @@
 
     exec-once = swayidle -w timeout 1200 '$lockscreen' timeout 1200 'hyprctl dispatch dpms off'
     exec-once = swww-daemon
+    exec-once = bash $xdg/swww/swwwallpaper.sh -n
     exec-once = swaync
     exec-once = gammastep
 
     exec-once = gophrland daemon --config $xdg/gophrland/gophrland.yaml
 
     exec-once = tuxedo-control-center
+
+    $dropterm = ^(gophrland-alacritty)$
+    windowrule = float,$dropterm
+    windowrule = workspace special:scratchpads_special_workspace silent,$dropterm
+    windowrule = size 75% 60%,$dropterm
+    windowrulev2 = dimaround,class:$dropterm
+
+    $pulsemixer = ^(pulsemixer-alacritty)$
+    windowrule = float,$pulsemixer
+    windowrule = workspace special:scratchpads_special_workspace silent,$pulsemixer
+    windowrule = size 75% 60%,$pulsemixer
+    windowrulev2 = dimaround,class:$pulsemixer
   '';
 
   # Let Home Manager install and manage itself.

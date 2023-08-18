@@ -21,19 +21,22 @@
     "gophrland": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1690643485,
-        "narHash": "sha256-jTSRr+v4o53suZULR4O/RZkKo92FqJTgUWAOGTGyJ8E=",
+        "lastModified": 1692374436,
+        "narHash": "sha256-uQAVy0ZTI9wz/g+iphLUXayqXyOUYuCGnmMTiO0LO2w=",
         "owner": "edjubert",
         "repo": "gophrland",
-        "rev": "e381ea0564de8c4e62d6ef72e2bae4946b150adb",
+        "rev": "019993148e1837862d3e5f89c80c3d660cf4db88",
         "type": "github"
       },
       "original": {
         "owner": "edjubert",
         "repo": "gophrland",
+        "rev": "019993148e1837862d3e5f89c80c3d660cf4db88",
         "type": "github"
       }
     },
@@ -60,7 +63,9 @@
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "wlroots": "wlroots",
         "xdph": "xdph"
       },
@@ -101,38 +106,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1690593349,
-        "narHash": "sha256-i6jdORO+YiP19pFNeR7oYIIwmzQvdxwNO+BmtATcYpA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "11cf5e1c74fe6892e860afeeaf3bfb84fdb7b1c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1690179384,
-        "narHash": "sha256-+arbgqFTAtoeKtepW9wCnA0njCOyoiDFyl0Q0SBSOtE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b12803b6d90e2e583429bb79b859ca53c348b39a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1691368598,
         "narHash": "sha256-ia7li22keBBbj02tEdqjVeLtc7ZlSBuhUk+7XTUFr14=",
         "owner": "nixos",
@@ -152,7 +125,7 @@
         "gophrland": "gophrland",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
