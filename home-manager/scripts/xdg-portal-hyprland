@@ -1,0 +1,11 @@
+#!/bin/sh
+
+sleep 2
+
+systemctl --user stop xdg-desktop-portal-gnome
+systemctl --user mask xdg-desktop-portal-gnome
+
+systemctl --user unmask xdg-desktop-portal-hyprland
+systemctl --user start xdg-desktop-portal-hyprland
+
+systemctl --user start xdg-desktop-portal-gtk

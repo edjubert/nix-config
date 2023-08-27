@@ -22,6 +22,8 @@
   };
 
   home.packages = with pkgs; [
+    ffmpeg
+    steam
     rofi
     swww
     deno
@@ -36,6 +38,7 @@
     networkmanagerapplet
     _1password
     _1password-gui
+    slack
     firefox
     killall
     nerdfonts
@@ -46,6 +49,11 @@
     ifuse
     gh
     git
+    swappy
+    slurp
+    grim
+    cliphist
+    pamixer
     (mpv.override {
       scripts = [mpvScripts.mpris];
     })
@@ -56,6 +64,8 @@
     gnomeExtensions.appindicator
     wdisplays
     gnomeExtensions.tray-icons-reloaded
+    chromium
+    brightnessctl
     direnv
     fzf
     htop
@@ -69,11 +79,11 @@
   xdg.configFile."gophrland".source = ./config/gophrland;
   xdg.configFile."fish".source = ./config/fish;
   xdg.configFile."rofi".source = ./config/rofi;
-  xdg.configFile."lvim".source = ./config/lvim;
   xdg.configFile."swaync".source = ./config/swaync;
   xdg.configFile."wlogout".source = ./config/wlogout;
   xdg.configFile."waybar".source = ./config/waybar;
   xdg.configFile."ideavim".source = ./config/ideavim;
+  xdg.configFile."mpv".source = ./config/mpv;
 
   programs.git = {
     enable = true;
@@ -206,6 +216,12 @@
       animation = workspaces, 1, 7, default
     }
 
+    # <===== VARIABLES =====>
+    $xdg = $HOME/.config
+    $scripts = $xdg/home-manager/scripts
+    $lockscreen = $scripts/lockscreen
+    $screenshot = $scripts/screenshot
+
     # <===== BINDINGS ====>
 
     $mod = SUPER
@@ -213,7 +229,7 @@
     $mR = mouse:273
 
     bind   = $mod        , C     , killactive
-    bind   = $mod SHIFT  , M     , exit
+    bind   = $mod SHIFT  , Q     , exit
     bind   = $mod        , SPACE , togglefloating
     bind   = $mod SHIFT  , SPACE , pin
     bind   = $mod        , P     , pseudo
@@ -273,6 +289,23 @@
     bind   = $mod SHIFT  , D     , exec           , rofi -show run
     bind   = $mod        , Q     , exec           , $lockscreen
 
+    # Media keys
+    bind   =             , XF86AudioLowerVolume , exec, $scripts/volume dec
+    bind   =             , XF86AudioRaiseVolume , exec, $scripts/volume inc
+    bind   =             , XF86AudioMute        , exec, $scripts/volume mute
+    bind   =             , XF86AudioPlay        , exec, playerctl play-pause
+    bind   =             , XF86AudioNext        , exec, playerctl next
+    bind   =             , XF86AudioPrev        , exec, playerctl previous
+    bind   =             , XF86MonBrightnessUp  , exec, $scripts/brightness inc
+    bind   =             , XF86MonBrightnessDown, exec, $scripts/brightness dec
+    bind   =      SHIFT  , XF86MonBrightnessUp  , exec, $scripts/keyboard_brightness inc
+    bind   =      SHIFT  , XF86MonBrightnessDown, exec, $scripts/keyboard_brightness dec
+
+    bind   = $mod        , U     , exec           , kooha
+    bind   = $mod        , V     , exec           , $scripts/clipboard
+    bind   = $mod        , Y     , exec           , firefox --new-window youtube.com
+    bind   = $mod        , code:60, exec          , 1password
+
     # Gophrland
     bind   = $mod        , O     , exec           , gophrland monitors focus next
     bind   = $mod SHIFT  , O     , exec           , gophrland monitors move next
@@ -290,16 +323,12 @@
     bind   = $mod SHIFT  , LEFT  , exec           , hyprland-relative-workspace b --with-window
     bind   = $mod SHIFT  , RIGHT , exec           , hyprland-relative-workspace f --with-window
 
-    $xdg = $HOME/.config
-    $scripts = $xdg/home-manager/scripts
-    $lockscreen = $scripts/lockscreen
-    $screenshot = $scripts/screenshot
-
     exec-once = waybar --config $xdg/waybar/config.jsonc
     exec-once = waybar --config $xdg/waybar/window-title.jsonc
     exec-once = nm-applet
 
-    exec-once = sh $scripts/xdg
+    exec-once = sh $scripts/xdg-portal-hyprland
+    exec-once = sh $scripts/polkit-authentication-agent-1
 
     exec-once = wl-paste --type text --watch cliphist store
     exec-once = wl-paste --type image --watch cliphist store

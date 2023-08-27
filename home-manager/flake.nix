@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     gophrland = {
-      url = "github:edjubert/gophrland?rev=019993148e1837862d3e5f89c80c3d660cf4db88";
+      url = "github:edjubert/gophrland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

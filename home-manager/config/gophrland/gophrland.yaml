@@ -25,6 +25,11 @@ options:
           margin: 50
         unfocus: "hide"
 
+    - slack:
+        command: "slack"
+        class: "slack"
+        float: false
+
     - whatsapp-for-linux:
         command: "whatsapp-for-linux"
         class: "whatsapp-for-linux"

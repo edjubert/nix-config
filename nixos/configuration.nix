@@ -41,42 +41,13 @@
     };
   };
 
-  systemd.user.services = {
-    polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-	Restart = "on-failure";
-	RestartSec = 1;
-	TimeoutStopsec = 10;
-      };
-    };
-    xdg-desktop-portal-for-hyprland = {
-      description = "xdg-desktop-portal-for-hyprland";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      # after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "/home/edjubert/.config/home-manager/scripts/xdg-portal start";
-	ExecStop = "/home/edjubert/.config/home-manager/scripts/xdg-portal stop";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-
-  };
-
   boot.kernelParams = [
     "quiet"
-    "tuxedo_keyboard.mode=0"
+    "tuxedo_keyboard.mode=1"
     "tuxedo_keyboard.brightness=25"
     "tuxedo_keyboard.color_left=0x0000ff"
+    "tuxedo_keyboard.color_right=0x00ffff"
+    "tuxedo_keyboard.color_center=0xffffff"
     "module_blacklist=i915"
   ];
 
@@ -103,10 +74,11 @@
     useXkbConfig = false; # use xkbOptions in tty.
   };
 
-  # xdg.portal.enable = true;
-
   programs.fish.enable = true;
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   programs.light.enable = true;
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
@@ -136,10 +108,24 @@
   };
 
   hardware = {
-    # tuxedo-keyboard.enable = true;
+    tuxedo-keyboard.enable = true;
 
-    nvidia.modesetting.enable = true;
-    nvidia.powerManagement.enable = true;
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      nvidiaPersistenced = true;
+    };
+
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+	libvdpau-va-gl
+	nvidia-vaapi-driver
+      ];
+    };
   };
 
   sound.enable = true;
@@ -182,6 +168,8 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+    nvidia-vaapi-driver
+    egl-wayland
   ];
 
   environment.gnome.excludePackages = (with pkgs; [
@@ -204,6 +192,33 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
+  };
+
+  system.userActivationScripts = {
+    startXdgDesktopPortal.text = ''
+      #!/bin/sh
+      source ${config.system.build.setEnvironment}
+
+      systemctl --user stop xdg-desktop-portal-hyprland
+      systemctl --user mask xdg-desktop-portal-hyprland
+
+      systemctl --user unmask xdg-desktop-portal-gnome
+      systemctl --user start xdg-desktop-portal-gnome
+
+      systemctl --user start xdg-desktop-portal
+    '';
+
+    linktosharedfolder.text = ''
+      if [[ ! -h "$HOME/.config/nvim" ]];
+      then
+        ln -s "$HOME/.config/home-manager/config/nvim/" "$HOME/.config/nvim"
+      fi
+
+      if [[ ! -h "$HOME/.config/swww" ]];
+      then
+        ln -s "$HOME/.config/home-manager/config/swww/" "$HOME/.config/swww"
+      fi
+    '';
   };
 
   system.autoUpgrade.enable = true;

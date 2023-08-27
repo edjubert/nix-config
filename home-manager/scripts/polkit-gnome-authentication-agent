@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sleep 2
+
+systemctl --user start polkit-authentication-agent-1
