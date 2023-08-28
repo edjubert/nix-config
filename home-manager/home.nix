@@ -8,6 +8,8 @@
     "$HOME/.local/bin"
   ];
 
+  targets.genericLinux.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 

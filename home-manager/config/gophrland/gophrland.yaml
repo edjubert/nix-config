@@ -27,7 +27,7 @@ options:
 
     - slack:
         command: "slack"
-        class: "slack"
+        class: "Slack"
         float: false
 
     - whatsapp-for-linux:
