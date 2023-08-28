@@ -1,1 +1,247 @@
-/home/edjubert/.config/home-manager/config/waybar/dark.css
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 0px;
+}
+
+window#waybar {
+    background: rgba(17, 17, 27, 0);
+}
+
+tooltip {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #11111b;
+}
+
+#workspaces button {
+    box-shadow: none;
+	  text-shadow: none;
+    padding: 0px;
+    border-radius: 7px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: #cdd6f4;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active {
+    background: #a6adc8;
+    color: #313244;
+    margin-left: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    background: #a6adc8;
+    color: #313244;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#cpu,
+#battery,
+#memory,
+#custom-power,
+#custom-notification,
+#custom-layout,
+#clock,
+#workspaces,
+#window,
+#custom-updates,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-wallchange,
+#custom-slack,
+#custom-whatsdesk,
+#custom-waybar-mpris,
+#custom-mode,
+#tray {
+    color: #cdd6f4;
+    background: #11111b;
+    opacity: 1;
+    padding: 0px;
+    margin: 3px 0px 3px 0px;
+}
+
+
+/* resource monitor block */
+#cpu {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#battery {
+    border-radius: 10px;
+    margin-left: 6px;
+    padding-left: 14px;
+    padding-right: 20px;
+}
+
+#memory {
+    border-radius: 0px 10px 10px 0px;
+    border-left-width: 0px;
+    padding-left: 4px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+
+/* date time block */
+#clock {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+#clock.calendar {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+
+
+/* workspace window block */
+#workspaces {
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#window {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-left: 12px;
+}
+
+#custom-notification {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-left: 12px;
+}
+#custom-layout {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+#custom-waybar-mpris {
+    border-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-left: 12px;
+}
+
+
+/* control center block */
+#custom-updates {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#network {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+#bluetooth {
+    padding-left: 4px;
+    padding-right: 4px;
+} 
+
+#pulseaudio {
+    border-radius: 10px 0 0 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#pulseaudio.microphone {
+    border-radius: 0 10px 10px 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 12px;
+}
+
+#custom-wallchange {
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+#custom-slack {
+
+    border-radius: 0 10px 10px 0;
+    padding-left: 12px;
+    padding-right: 15px;
+    margin-right: 4px;
+}
+#custom-whatsdesk {
+    border-radius: 10px 0 0 10px;
+    padding-left: 12px;
+    padding-right: 5px;
+    margin-left: 4px;
+}
+
+
+/* system tray block */
+
+#custom-mode {
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+
+#tray {
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 10px;
+}
+
+#custom-power {
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 15px;
+    margin-left: 10px;
+}
+
+#mediaplayer {
+    background: #ffffff;
+    border-radius: 10px;
+    padding-left: 6px;
+    padding-right: 15px;
+    margin-left: 10px;
+}

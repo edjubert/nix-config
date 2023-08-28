@@ -69,7 +69,6 @@
     cliphist
     gammastep
     grim
-    networkmanagerapplet
     pamixer
     pulsemixer
     rofi
