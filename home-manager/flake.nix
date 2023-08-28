@@ -26,7 +26,7 @@
         inherit pkgs;
 
         modules = [
-          ./home.nix
+          ./homes/edouard.jubert.ext.nix
 
           # hyprland.homeManagerModules.default
           # {
@@ -48,7 +48,7 @@
         inherit pkgs;
 
         modules = [
-          ./home.nix
+          ./homes/edjubert.nix
           hyprland.homeManagerModules.default
           {
             wayland.windowManager.hyprland = {

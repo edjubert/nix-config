@@ -1,14 +1,12 @@
 { config, pkgs, inputs, ... }:
 
 {
-  home.username = "edouard.jubert.ext";
-  home.homeDirectory = "/home/edouard.jubert.ext";
+  home.username = "edjubert";
+  home.homeDirectory = "/home/edjubert";
   home.stateVersion = "23.05"; # Please read the comment before changing.
   home.sessionPath = [
     "$HOME/.local/bin"
   ];
-
-  targets.genericLinux.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
@@ -35,12 +33,12 @@
 
     # Theme
     nerdfonts
-    whitesur-icon-theme
 
     # Apps
     _1password
     _1password-gui
     slack
+    steam
     whatsapp-for-linux
 
     # iPhone
@@ -71,6 +69,7 @@
     cliphist
     gammastep
     grim
+    networkmanagerapplet
     pamixer
     pulsemixer
     rofi
@@ -82,23 +81,24 @@
     wl-clipboard
     wlogout
 
-    # Terminal related
+    # Terminal
     alacritty
     bat
     direnv
     fzf
+    htop
     htop
     jq
     killall
     ripgrep
   ];
 
-  fonts.fontconfig.enable = true;
-
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
   programs.fish.enable = true;
+
+  fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;
@@ -113,22 +113,23 @@
     });
   };
 
-  xdg.configFile."alacritty".source = ./config/alacritty;
-  xdg.configFile."gophrland".source = ./config/gophrland;
-  xdg.configFile."fish".source = ./config/fish;
-  xdg.configFile."rofi".source = ./config/rofi;
-  xdg.configFile."swaync".source = ./config/swaync;
-  xdg.configFile."wlogout".source = ./config/wlogout;
-  xdg.configFile."waybar".source = ./config/waybar;
-  xdg.configFile."ideavim".source = ./config/ideavim;
-  xdg.configFile."mpv".source = ./config/mpv;
-  xdg.configFile."hypr".source = ./config/hyprland;
+  xdg.configFile."alacritty".source = ../config/alacritty;
+  xdg.configFile."gophrland".source = ../config/gophrland;
+  xdg.configFile."fish".source      = ../config/fish;
+  xdg.configFile."rofi".source      = ../config/rofi;
+  xdg.configFile."swaync".source    = ../config/swaync;
+  xdg.configFile."wlogout".source   = ../config/wlogout;
+  xdg.configFile."waybar".source    = ../config/waybar;
+  xdg.configFile."ideavim".source   = ../config/ideavim;
+  xdg.configFile."mpv".source       = ../config/mpv;
+  xdg.configFile."hypr".source       = ../config/hyprland;
 
   home.file = {};
 
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "alacritty";
+    BROWSER = "firefox";
   };
 
   # Let Home Manager install and manage itself.
