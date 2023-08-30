@@ -129,7 +129,7 @@ window {
     @include common;
 
     @if $drop_shadow {
-        box-shadow: 0 0 6px 0 $shadow;
+        box-shadow: 0 0 0 0 $shadow;
     }
     margin: max($spacing, 8px);
     border: $border_width solid $popover_border_color;

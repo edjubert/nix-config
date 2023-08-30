@@ -9,8 +9,9 @@ $float: 5px;
         > * {
             @include floating_widget;
             border-radius: $radii;
-            margin: $wm_gaps $float;
+            margin: $float;
             transition: $transition;
+            padding: .3em .3em;
         }
 
         &:hover > * {
@@ -38,15 +39,17 @@ $float: 5px;
     }
 
     label {
+        padding: .1em .7em;
         font-weight: bold;
     }
 
     image {
+        padding: .1em .3em;
         font-size: $font-size * 1.2;
     }
 
     > * {
-        padding: .3em .5em;
+        // padding: .2em .4em;
     }
 }
 
@@ -65,7 +68,7 @@ $float: 5px;
 
     @if $bar_style == 'floating' {
         @include floating_widget;
-        margin: $wm_gaps;
+        // margin: $wm_gaps;
         padding: 0;
     }
     
@@ -130,6 +133,12 @@ $float: 5px;
         button {
             all: unset;
 
+            &.empty {
+              color: transparentize($fg_color, 0.6);
+            }
+            &.active {
+              color: $accent;
+            }
             .indicator {
                 min-width: 10px;
                 min-height: 10px;
@@ -148,7 +157,7 @@ $float: 5px;
             }
 
             &:last-child .indicator { margin-right: $spacing; }
-            &:first-child .indicator { margin-left: $spacing; }
+            // &:first-child .indicator { margin-left: $spacing; }
 
             &.empty .indicator {
                 border-color: transparentize($fg_color, 0.3);

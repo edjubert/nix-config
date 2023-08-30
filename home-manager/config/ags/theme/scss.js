@@ -43,9 +43,9 @@ $drop_shadow: ${t.drop_shadow};
 
 $transition: ${t.transition}ms;
 
-$font_size: 16px;
+$font_size: 13px;
 $font: 'Ubuntu Nerd Font';
-$mono_font: 'Mononoki Nerd Font', monospace;
+$mono_font: 'Iosevka Nerd Font', monospace;
 $wallpaper_fg: ${t.wallpaper_fg};
 $shader_fg: white;
 
@@ -54,14 +54,14 @@ $bar_style: ${t.bar_style};
 $layout: ${t.layout};`;
 
 export async function setupScss(theme) {
-    const path = ags.App.configDir;
-    try {
-        await writeFile(generated(scss(theme)), `${path}/scss/generated.scss`);
-        await writeFile(generated(theme.additional_scss || ''), `${path}/scss/additional.scss`);
-        await execAsync(['sassc', `${path}/scss/main.scss`, `${path}/style.css`]);
-        ags.App.resetCss();
-        ags.App.applyCss(`${path}/style.css`);
-    } catch (error) {
-        logError(error);
-    }
+  const path = ags.App.configDir;
+  try {
+    await writeFile(generated(scss(theme)), `${path}/scss/generated.scss`);
+    await writeFile(generated(theme.additional_scss || ''), `${path}/scss/additional.scss`);
+    await execAsync(['sassc', `${path}/scss/main.scss`, `${path}/style.css`]);
+    ags.App.resetCss();
+    ags.App.applyCss(`${path}/style.css`);
+  } catch (error) {
+    logError(error);
+  }
 }

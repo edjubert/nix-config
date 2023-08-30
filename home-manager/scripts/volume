@@ -32,10 +32,10 @@ if [ "$MUTE" == "true" ]; then
 	ICON=audio-volume-muted
 fi
 
-if [[ $VOLUME == 0 || "$MUTE" == "off" ]]; then
-	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG
-else
-	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG -h int:value:"$VOLUME" "Volume: ${VOLUME}%"
-fi
-
-canberra-gtk-play -i audio-volume-change -d "changeVolume"
+# if [[ $VOLUME == 0 || "$MUTE" == "off" ]]; then
+# 	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG
+# else
+# 	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG -h int:value:"$VOLUME" "Volume: ${VOLUME}%"
+# fi
+#
+# canberra-gtk-play -i audio-volume-change -d "changeVolume"

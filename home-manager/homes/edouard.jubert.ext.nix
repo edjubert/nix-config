@@ -29,6 +29,8 @@
     deno
     go
     rustup
+    sassc
+    hyprpicker
 
     # IDE
     jetbrains.datagrip
@@ -80,6 +82,9 @@
     swww
     wdisplays
     wl-clipboard
+    wf-recorder
+    wayshot
+    k9s
     wlogout
 
     # Terminal related
@@ -115,6 +120,7 @@
   };
 
   xdg.configFile."alacritty".source = ../config/alacritty;
+  xdg.configFile."lazygit".source   = ../config/lazygit;
   xdg.configFile."gophrland".source = ../config/gophrland;
   xdg.configFile."fish".source      = ../config/fish;
   xdg.configFile."rofi".source      = ../config/rofi;
@@ -124,7 +130,7 @@
   xdg.configFile."ideavim".source   = ../config/ideavim;
   xdg.configFile."mpv".source       = ../config/mpv;
   xdg.configFile."hypr".source      = ../config/hyprland;
-  xdg.configFile."ags".source      = ../config/ags;
+  # xdg.configFile."ags".source      = ../config/ags;
 
   home.file = {};
 

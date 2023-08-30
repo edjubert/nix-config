@@ -5,6 +5,9 @@ return {
   { "tree-sitter/tree-sitter-go" },
   { "windwp/nvim-spectre" },
   { "danilamihailov/beacon.nvim" },
+  { "bazelbuild/vim-ft-bzl" },
+  { "google/vim-maktaba" },
+  { "bazelbuild/vim-bazel" },
   {
     "phaazon/hop.nvim",
     branch = "v2",

@@ -4,14 +4,15 @@ const { execAsync, lookUpIcon } = ags.Utils;
 const { Box, Button, Label, Icon } = ags.Widget;
 
 export const Workspaces = ({
-  fixed = 7,
+  fixed = 9,
   indicator,
   ...props
 } = {}) => Box({
   ...props,
   children: Array.from({ length: fixed }, (_, i) => i + 1).map(i => Button({
     onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`).catch(print),
-    child: indicator ? indicator() : Label(`${i}`),
+    // child: indicator ? indicator() : Label(`${i}`),
+    child: Label({ label: `${i}` }),
     connections: [[Hyprland, btn => {
       const { workspaces, active } = Hyprland;
       const occupied = workspaces.has(i) && workspaces.get(i).windows > 0;
