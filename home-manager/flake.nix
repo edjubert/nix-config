@@ -15,9 +15,13 @@
       url = "github:edjubert/gophrland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, gophrland, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
@@ -38,6 +42,7 @@
 
           {
             home.packages = [
+              ags.packages.${system}.default
               gophrland.packages.${system}.default
             ];
           }

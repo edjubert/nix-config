@@ -11,8 +11,9 @@ fi
 BRIGHTNESS=$(brightnessctl get)
 MAX=$(brightnessctl max)
 PERCENT=$(echo $((BRIGHTNESS * 100 / MAX)))
+MSGTAG="mybrightness"
+ICON="indicator-brightness"
 
-NOTI_ID=$(notify-send.py "Backlight" "$PERCENT%" \
-	--hint string:image-path:video-display boolean:transient:true \
-	int:has-percentage:$PERCENT \
-	--replaces-process "brightness-popup")
+dunstify -a "changeBrightness" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG -h int:value:"$PERCENT" "Brightness: ${PERCENT}%"
+
+canberra-gtk-play -i audio-volume-change -d "changeBrightness"

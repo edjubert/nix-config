@@ -14,6 +14,7 @@ fi
 
 VOLUME=$(pamixer --get-volume)
 MUTE=$(pamixer --get-mute)
+MSGTAG="myvolume"
 
 echo $VOLUME
 echo $MUTE
@@ -31,11 +32,10 @@ if [ "$MUTE" == "true" ]; then
 	ICON=audio-volume-muted
 fi
 
-echo $VOLUME
-echo $ICON
-NOTI_ID=$(notify-send.py "$VOLUME%" \
-	--hint string:image-path:$ICON boolean:transient:true \
-	int:has-percentage:$VOLUME \
-	--replaces-process "volume-popup")
+if [[ $VOLUME == 0 || "$MUTE" == "off" ]]; then
+	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG
+else
+	dunstify -a "changeVolume" -u low -i $ICON -h string:x-dunst-stack-tag:$MSGTAG -h int:value:"$VOLUME" "Volume: ${VOLUME}%"
+fi
 
-echo "$NOTI_ID"
+canberra-gtk-play -i audio-volume-change -d "changeVolume"

@@ -84,6 +84,7 @@
 
     # Terminal related
     alacritty
+    foot
     bat
     direnv
     fzf
@@ -123,6 +124,7 @@
   xdg.configFile."ideavim".source   = ../config/ideavim;
   xdg.configFile."mpv".source       = ../config/mpv;
   xdg.configFile."hypr".source      = ../config/hyprland;
+  xdg.configFile."ags".source      = ../config/ags;
 
   home.file = {};
 
