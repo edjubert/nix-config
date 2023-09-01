@@ -181,6 +181,7 @@ const catppuccin = {
   hover_fg: '#f5a97f',
   border_width: 0,
   bar_style: 'floating',
+  drop_shadow: false,
   hypr_active_border: '$accent',
   bg_color: '#24273a',
   fg_color: '#cad3f5',

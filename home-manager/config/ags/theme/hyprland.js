@@ -16,10 +16,6 @@ export function setupHyprland({
     App.instance.connect('config-parsed', () => {
       for (const [name] of App.windows) {
         if (!name.includes('desktop') && name !== 'verification' && name !== 'powermenu') {
-          execAsync(['hyprctl', 'keyword', 'layerrule', `unset, ${name}`]).then(() => {
-            // execAsync(['hyprctl', 'keyword', 'layerrule', `blur, ${name}`]);
-            execAsync(['hyprctl', 'keyword', 'layerrule', `ignorealpha 0.6, ${name}`]);
-          });
         }
       }
 
