@@ -7,22 +7,22 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "modules-left": [
-    "custom/power",
-    "custom/wallchange",
+    "wlr/workspaces",
     "battery",
     "hyprland/window"
   ],
   "modules-center": [
-    "wlr/workspaces",
+    "clock",
     "custom/notification"
   ],
   "modules-right": [
+    "custom/wallchange",
     "custom/whatsdesk",
     "custom/slack",
     "custom/updates",
     "network",
     "tray",
-    "clock"
+    "custom/power"
   ],
   "custom/layout": {
     "format": "{}",
@@ -119,6 +119,7 @@
   },
   // left modules //
   "clock": {
+    "on-click": "ags toggle-window dashboard",
     "format": "{:%H:%M}"
   },
   // right modules //
@@ -192,7 +193,7 @@
   },
   "custom/power": {
     "format": " ",
-    "on-click": "wlogout -b 4 -c 5 -r 5 -m 300 --protocol layer-shell",
+    "on-click": "ags toggle-window powermenu",
     "tooltip": false
   }
 }

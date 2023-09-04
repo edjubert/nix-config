@@ -40,7 +40,7 @@ const Bar = monitor => shared.Bar({
 
 export default monitors => ([
   ...monitors.map(mon => [
-    Bar(mon),
+    //   Bar(mon),
     shared.Notifications(mon, 'slide_down', 'top'),
     shared.Desktop(mon),
     ...shared.Corners(mon),
