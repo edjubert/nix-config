@@ -6,7 +6,7 @@ plugins:
 
 options:
   float:
-    offset: 0.01
+    offset: 0.1
 
   scratchpads:
     - term:
@@ -28,7 +28,10 @@ options:
     - slack:
         command: "slack"
         class: "Slack"
-        float: false
+        float: true
+        floatOpts:
+          animation: "fromRight"
+          margin: 50
 
     - whatsapp-for-linux:
         command: "whatsapp-for-linux"
