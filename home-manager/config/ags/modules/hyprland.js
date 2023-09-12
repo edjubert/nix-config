@@ -11,7 +11,8 @@ export const Workspaces = ({
 } = {}) => Box({
   ...props,
   children: Array.from({ length: fixed }, (_, i) => i + 1).map(i => {
-    const index = monitor !== null ? i + 1 + fixed * monitor : i
+    const index = monitor !== null ? i + (monitor === 0 ? 0 : 1) + fixed * monitor : i
+    console.log({ index, monitor })
     return Button({
       onClicked: () => execAsync(`hyprctl dispatch workspace ${index}`).catch(print),
       // child: indicator ? indicator() : Label(`${i}`),
