@@ -16,7 +16,7 @@ const Bar = monitor => shared.Bar({
   anchor: 'top left right',
   monitor,
   start: [
-    Workspaces(),
+    Workspaces({ monitor }),
     Separator({ valign: 'center' }),
     Special(),
     Separator({ valign: 'center' }),

@@ -6,21 +6,25 @@ const { Box, Button, Label, Icon } = ags.Widget;
 export const Workspaces = ({
   fixed = 9,
   indicator,
+  monitor,
   ...props
 } = {}) => Box({
   ...props,
-  children: Array.from({ length: fixed }, (_, i) => i + 1).map(i => Button({
-    onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`).catch(print),
-    // child: indicator ? indicator() : Label(`${i}`),
-    child: Label({ label: `${i}` }),
-    connections: [[Hyprland, btn => {
-      const { workspaces, active } = Hyprland;
-      const occupied = workspaces.has(i) && workspaces.get(i).windows > 0;
-      btn.toggleClassName('active', active.workspace.id === i);
-      btn.toggleClassName('occupied', occupied);
-      btn.toggleClassName('empty', !occupied);
-    }]],
-  })),
+  children: Array.from({ length: fixed }, (_, i) => i + 1).map(i => {
+    const index = monitor !== null ? i + 1 + fixed * monitor : i
+    return Button({
+      onClicked: () => execAsync(`hyprctl dispatch workspace ${index}`).catch(print),
+      // child: indicator ? indicator() : Label(`${i}`),
+      child: Label({ label: `${i}` }),
+      connections: [[Hyprland, btn => {
+        const { workspaces, active } = Hyprland;
+        const occupied = workspaces.has(index) && workspaces.get(index).windows > 0;
+        btn.toggleClassName('active', active.workspace.id === index);
+        btn.toggleClassName('occupied', occupied);
+        btn.toggleClassName('empty', !occupied);
+      }]],
+    })
+  }),
 });
 
 export const ClientLabel = ({
