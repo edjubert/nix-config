@@ -36,13 +36,13 @@
         modules = [
           ./homes/edouard.jubert.ext.nix
 
-          hyprland.homeManagerModules.default
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-              xwayland.enable = true;
-            };
-          }
+          # hyprland.homeManagerModules.default
+          # {
+          #   wayland.windowManager.hyprland = {
+          #     enable = true;
+          #     xwayland.enable = true;
+          #   };
+          # }
 
           {
             home.packages = [

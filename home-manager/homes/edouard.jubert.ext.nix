@@ -37,6 +37,7 @@
     jetbrains.idea-ultimate
 
     # Theme
+    source-code-pro
     nerdfonts
 
     # Apps
@@ -99,7 +100,16 @@
     ripgrep
   ];
 
-  fonts.fontconfig.enable = true;
+  # fonts = {
+  #   fontconfig = {
+  #     enable = true;
+  #     defaultFonts = {
+  #       serif = [ "Ubuntu" ];
+  #       sansSerif = [ "Ubuntu" ];
+  #       monospace = [ "Iosevka NF" ];
+  #     };
+  #   };
+  # };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -130,6 +140,7 @@
   xdg.configFile."ideavim".source   = ../config/ideavim;
   xdg.configFile."mpv".source       = ../config/mpv;
   xdg.configFile."hypr".source      = ../config/hyprland;
+  xdg.configFile."foot".source      = ../config/foot;
   # xdg.configFile."ags".source      = ../config/ags;
 
   home.file = {};
