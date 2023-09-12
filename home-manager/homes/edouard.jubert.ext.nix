@@ -81,7 +81,6 @@
     swappy
     swaylock-effects
     swww
-    wdisplays
     wl-clipboard
     wf-recorder
     wayshot
@@ -89,7 +88,6 @@
     wlogout
 
     # Terminal related
-    alacritty
     foot
     bat
     direnv
