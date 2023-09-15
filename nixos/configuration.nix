@@ -214,6 +214,11 @@
         ln -s "$HOME/.config/home-manager/config/nvim/" "$HOME/.config/nvim"
       fi
 
+      if [[ ! -h "$HOME/.config/ags" ]];
+      then
+        ln -s "$HOME/.config/home-manager/config/ags/" "$HOME/.config/ags"
+      fi
+
       if [[ ! -h "$HOME/.config/swww" ]];
       then
         ln -s "$HOME/.config/home-manager/config/swww/" "$HOME/.config/swww"

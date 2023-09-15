@@ -54,16 +54,17 @@
 
         modules = [
           ./homes/edjubert.nix
-          hyprland.homeManagerModules.default
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-              nvidiaPatches = true;
-              xwayland.enable = true;
-            };
-          }
+          # hyprland.homeManagerModules.default
+          # {
+          #   wayland.windowManager.hyprland = {
+          #     enable = true;
+          #     nvidiaPatches = true;
+          #     xwayland.enable = true;
+          #   };
+          # }
           {
             home.packages = [
+              ags.packages.${system}.default
               gophrland.packages.${system}.default
             ];
           }

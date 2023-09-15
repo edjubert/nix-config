@@ -23,9 +23,13 @@
 
   home.packages = with pkgs; [
     # Dev
+    nodejs
     deno
     go
     rustup
+    sassc
+    gcc
+    cmake
 
     # IDE
     jetbrains.datagrip
@@ -80,18 +84,34 @@
     wdisplays
     wl-clipboard
     wlogout
+    wf-recorder
 
     # Terminal
     alacritty
+    foot
+    foot
     bat
     direnv
     fzf
-    htop
     htop
     jq
     killall
     ripgrep
   ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Peach-dark";
+
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "peach" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
+  };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -114,7 +134,9 @@
   };
 
   xdg.configFile."alacritty".source = ../config/alacritty;
+  xdg.configFile."foot".source      = ../config/foot;
   xdg.configFile."gophrland".source = ../config/gophrland;
+  xdg.configFile."lazygit".source   = ../config/lazygit;
   xdg.configFile."fish".source      = ../config/fish;
   xdg.configFile."rofi".source      = ../config/rofi;
   xdg.configFile."swaync".source    = ../config/swaync;
