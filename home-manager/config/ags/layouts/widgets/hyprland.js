@@ -2,13 +2,14 @@ import * as hyprland from '../../modules/hyprland.js';
 const { Box, EventBox, Button, Label } = ags.Widget;
 const { execAsync } = ags.Utils;
 
-export const Workspaces = props => Box({
+export const Workspaces = ({ monitor, ...props }) => Box({
   ...props,
   className: 'workspaces panel-button',
   children: [Box({
     children: [EventBox({
       className: 'eventbox',
       child: hyprland.Workspaces({
+        monitor,
         indicator: () => Box({
           className: 'indicator',
           valign: 'center',

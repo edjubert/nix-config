@@ -16,7 +16,7 @@ const Bar = monitor => shared.Bar({
   anchor: 'top left right',
   monitor,
   start: [
-    Workspaces(),
+    Workspaces({ monitor }),
     Separator({ valign: 'center' }),
     Special(),
     Separator({ valign: 'center' }),
@@ -45,7 +45,7 @@ export default monitors => ([
     shared.Desktop(mon),
     ...shared.Corners(mon),
     shared.OSDIndicator(mon),
-    shared.Dock(mon),
+    // shared.Dock(mon),
   ]),
   shared.Quicksettings({ position: 'top right' }),
   shared.Dashboard({ position: 'top' }),

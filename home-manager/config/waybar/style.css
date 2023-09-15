@@ -35,8 +35,8 @@ tooltip {
 }
 
 #workspaces button.active {
-    background: #a6adc8;
-    color: #313244;
+    background: #b8c0e0;
+    color: #1e2030;
     margin-left: 2px;
     padding-left: 10px;
     padding-right: 10px;
@@ -46,8 +46,8 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #a6adc8;
-    color: #313244;
+    background: #b8c0e0;
+    color: #1e2030;
     margin-left: 2px;
     margin-right: 2px;
     padding-left: 10px;
@@ -75,8 +75,8 @@ tooltip {
 #custom-waybar-mpris,
 #custom-mode,
 #tray {
-    color: #cdd6f4;
-    background: #11111b;
+    color: #cad3f5;
+    background: #1e2030;
     opacity: 1;
     padding: 0px;
     margin: 3px 0px 3px 0px;
