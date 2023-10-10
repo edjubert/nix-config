@@ -129,9 +129,7 @@ export const NotificationList = props => Box({
   vexpand: true,
   className: 'notification-list',
   connections: [[Notifications, box => {
-    box.children = Array.from(Notifications.notifications.values())
-      .map(n => Notification(n)).sort((a, b) => a < b);
-
+    box.children = Array.from(Notifications.notifications.values()).sort((a, b) => a.time < b.time).map(n => Notification(n));
     box.visible = Notifications.notifications.size > 0;
   }]],
 });
