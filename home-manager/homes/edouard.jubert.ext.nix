@@ -1,4 +1,4 @@
-{ config, pkgs, inputs,lib, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   home.username = "edouard.jubert.ext";
@@ -7,6 +7,7 @@
   home.sessionPath = [
     "$HOME/.local/bin"
   ];
+
 
   targets.genericLinux.enable = true;
 
@@ -20,6 +21,21 @@
       enabled-extensions = [
         "trayIconsReloaded@selfmade.pl"
       ];
+    };
+  };
+
+  gtk = {
+    enable = true;
+    # cursorTheme = {
+    #   name = "breeze";
+    #   package = pkgs.gnome-breeze;
+    #   size = 16;
+    # };
+
+    cursorTheme = {
+      name = "Catppuccin";
+      package = pkgs.catppuccin-cursors.mochaPink;
+      size = 16;
     };
   };
 
@@ -68,6 +84,7 @@
     # Gnome
     gnomeExtensions.appindicator
     gnomeExtensions.tray-icons-reloaded
+    gnome.nautilus
 
     # Tools
     brightnessctl
@@ -146,7 +163,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "alacritty";
-    BROWSER = "firefox";
+    BROWSER = "/home/edouard.jubert.ext/.nix-profile/bin/firefox";
   };
 
   # Let Home Manager install and manage itself.
