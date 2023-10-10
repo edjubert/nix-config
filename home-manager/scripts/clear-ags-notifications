@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "[]" > ~/.cache/ags/notifications/notifications.json
