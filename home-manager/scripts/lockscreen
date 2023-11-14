@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Colors
-bg='1e1e2e00' bgl='313244' fg='d9e0ee'
+bg='1e1e2e11' bgl='313244' fg='d9e0ee'
 red='f38ba8' green='a6e3a1' yellow='f9e2af'
 blue='89b4fa' magenta='cba6f7' cyan='89dceb'
 white='ffffffff'
 alpha='00040000'
-image=$HOME/.config/swww/dark/hiking_in_space.png
+# image=$HOME/.config/swww/dark/hiking_in_space.png
+image=$HOME/.config/swww/wall.set
 dateformat=""
 timeformat="%H:%M"
 
@@ -37,7 +38,7 @@ swaylock \
 	--ring-ver-color $cyan \
 	--line-ver-color $cyan \
 	--key-hl-color $green \
-	--line-color 00000000 \
-	--inside-color 00000000 \
-	--separator-color 00000000 \
+	--line-color $bg \
+	--inside-color $bg \
+	--separator-color $bg \
 	--fade-in 0.2 # --effect-pixelate 60 \

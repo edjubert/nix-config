@@ -20,7 +20,37 @@
 
       enabled-extensions = [
         "trayIconsReloaded@selfmade.pl"
+        "backslide@codeisland.org"
+        "blur-my-shell@aunetx" 
+        "mousefollowsfocus@matthes.biz"
+        "pop-shell@system76.com"
+        "rounded-window-corners@yilozt"
+        "simulate-switching-workspaces-on-active-monitor@micheledaros.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
       ];
+    };
+
+    "org/gnome/shell/extensions/pop-shell" = {
+      "activate-launcher" = ["<Super>d"];
+      "active-hint" = true;
+      "active-hint-border-radius"=20;
+      "fullscreen-launcher" = true;
+      "gap-inner" = "uint32 5";
+      "gap-outer" = "uint32 5";
+      "hint-color-rgba" = "rgb(255,122,0)";
+      "log-level" = "uint32 0";
+      "mouse-cursor-focus-location" = "uint32 4";
+      "mouse-cursor-follows-active-window" = true;
+      "show-title" = false;
+      "smart-gaps" = false;
+      "snap-to-grid" = false;
+      "stacking-with-mouse" = false;
+      "tile-by-default" = true;
     };
   };
 
@@ -82,6 +112,12 @@
     firefox
 
     # Gnome
+    gnomeExtensions.backslide
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.mouse-follows-focus
+    gnomeExtensions.pop-shell
+    gnomeExtensions.rounded-window-corners
+    gnomeExtensions.switch-workspaces-on-active-monitor
     gnomeExtensions.appindicator
     gnomeExtensions.tray-icons-reloaded
     gnome.nautilus
@@ -101,6 +137,7 @@
     wl-clipboard
     wf-recorder
     wayshot
+    flameshot
     k9s
     wlogout
 
