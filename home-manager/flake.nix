@@ -23,6 +23,14 @@
         url = "github:sopa0/hyprsome";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    schizofox = {
+      url = "github:schizofox/schizofox";
+      # url = "path:/home/sioodmy/dev/schizofox";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, ... } @ inputs:
@@ -36,6 +44,7 @@
         modules = [
           ./homes/edouard.jubert.ext.nix
 
+          inputs.schizofox.homeManagerModule
           {
             home.packages = [
               ags.packages.${system}.default
@@ -51,6 +60,8 @@
 
         modules = [
           ./homes/edjubert.nix
+
+          inputs.schizofox.homeManagerModule
           hyprland.homeManagerModules.default
           {
             wayland.windowManager.hyprland = {
