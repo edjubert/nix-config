@@ -23,6 +23,7 @@
 
   home.packages = with pkgs; [
     # Dev
+    wayland-protocols
     nodejs
     deno
     go
@@ -32,11 +33,13 @@
     cmake
 
     # IDE
+    jetbrains.goland
     jetbrains.datagrip
     jetbrains.idea-ultimate
 
     # Theme
     nerdfonts
+    whitesur-icon-theme
 
     # Apps
     _1password
@@ -48,6 +51,7 @@
     # iPhone
     ifuse
     libimobiledevice
+    imlib2
 
     # Git
     gh
@@ -67,6 +71,11 @@
     # Gnome
     gnomeExtensions.appindicator
     gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.pop-shell
+    gnome.nautilus
+    gnome.sushi
+    gnome.eog
+    gnome-photos
 
     # Tools
     brightnessctl
@@ -85,6 +94,7 @@
     wl-clipboard
     wlogout
     wf-recorder
+    imagemagick
 
     # Terminal
     alacritty
@@ -101,16 +111,20 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Peach-dark";
+    # iconTheme = {
+    #   package = pkgs.whitesur-icon-theme;
+    #   name = "whitesur-icon-theme";
+    # };
+    # theme = {
+    #   name = "Catppuccin-Macchiato-Compact-Peach-dark";
 
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "peach" ];
-        size = "compact";
-        tweaks = [ "rimless" "black" ];
-        variant = "macchiato";
-      };
-    };
+    #   package = pkgs.catppuccin-gtk.override {
+    #     accents = [ "peach" ];
+    #     size = "compact";
+    #     tweaks = [ "rimless" "black" ];
+    #     variant = "macchiato";
+    #   };
+    # };
   };
 
   programs.direnv.enable = true;
@@ -136,7 +150,6 @@
   xdg.configFile."alacritty".source = ../config/alacritty;
   xdg.configFile."foot".source      = ../config/foot;
   xdg.configFile."gophrland".source = ../config/gophrland;
-  xdg.configFile."lazygit".source   = ../config/lazygit;
   xdg.configFile."fish".source      = ../config/fish;
   xdg.configFile."rofi".source      = ../config/rofi;
   xdg.configFile."swaync".source    = ../config/swaync;

@@ -15,8 +15,8 @@
       modules = [
         ./configuration.nix
 
-	tuxedo-nixos.nixosModules.default
-	{ hardware.tuxedo-control-center.enable = true; }
+        tuxedo-nixos.nixosModules.default
+        { hardware.tuxedo-control-center.enable = true; }
       ];
     };
   };

@@ -1,14 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/edouard.jubert.ext/workspace/nix-config
-- /home/edouard.jubert.ext/workspace/go
-- /home/edouard.jubert.ext/workspace/nix-bazel-go-template
-- /home/edouard.jubert.ext/workspace/go/common/avro/schemas
-- /home/edouard.jubert.ext/workspace/lbcgoimports
-- /home/edouard.jubert.ext/workspace/gophrland
-- /home/edouard.jubert.ext/dotfiles
-- /home/edouard.jubert.ext/workspace/hyprland-ipc-go
+- /home/edjubert/workspace/nix-config
 startuppopupversion: 5
 customcommandshistory:
 - q
 hidecommandlog: true
+ignorewhitespaceindiffview: false

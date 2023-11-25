@@ -23,15 +23,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
   };
 
-  # virtualisation.virtualbox.host = {
-  #   enable = true;
-  #   enableExtensionPack = true;
-  # };
   users.extraGroups.vboxusers.members = [ "edjubert" ];
   virtualisation.docker = {
     enable = true;
@@ -62,10 +55,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -79,7 +68,7 @@
     enable = true;
     xwayland.enable = true;
   };
-  programs.light.enable = true;
+  programs.hyprland.nvidiaPatches = true;
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
@@ -97,7 +86,7 @@
   services.xserver = {
     displayManager.gdm = {
       enable = true;
-      wayland = true;
+      wayland= true;
     };
     desktopManager.gnome.enable = true;
 
@@ -122,8 +111,8 @@
       driSupport = true;
       extraPackages = with pkgs; [
         vaapiVdpau
-	libvdpau-va-gl
-	nvidia-vaapi-driver
+	      libvdpau-va-gl
+	      nvidia-vaapi-driver
       ];
     };
   };
@@ -167,6 +156,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    catppuccin-gtk
+    gnome.adwaita-icon-theme
+    libcamera
+    whitesur-icon-theme
     neovim
     nvidia-vaapi-driver
     egl-wayland
@@ -195,18 +188,18 @@
   };
 
   system.userActivationScripts = {
-    startXdgDesktopPortal.text = ''
-      #!/bin/sh
-      source ${config.system.build.setEnvironment}
+    # startXdgDesktopPortal.text = ''
+    #   #!/bin/sh
+    #   source ${config.system.build.setEnvironment}
 
-      systemctl --user stop xdg-desktop-portal-hyprland
-      systemctl --user mask xdg-desktop-portal-hyprland
+    #   systemctl --user mask xdg-desktop-portal-hyprland
+    #   systemctl --user stop xdg-desktop-portal-hyprland
 
-      systemctl --user unmask xdg-desktop-portal-gnome
-      systemctl --user start xdg-desktop-portal-gnome
+    #   systemctl --user unmask xdg-desktop-portal-gnome
+    #   systemctl --user start xdg-desktop-portal-gnome
 
-      systemctl --user start xdg-desktop-portal
-    '';
+    #   systemctl --user restart xdg-desktop-portal
+    # '';
 
     linktosharedfolder.text = ''
       if [[ ! -h "$HOME/.config/nvim" ]];
@@ -219,6 +212,11 @@
         ln -s "$HOME/.config/home-manager/config/ags/" "$HOME/.config/ags"
       fi
 
+      if [[ ! -h "$HOME/.config/lazygit" ]];
+      then
+        ln -s "$HOME/.config/home-manager/config/lazygit/" "$HOME/.config/lazygit"
+      fi
+
       if [[ ! -h "$HOME/.config/swww" ]];
       then
         ln -s "$HOME/.config/home-manager/config/swww/" "$HOME/.config/swww"
@@ -228,6 +226,6 @@
 
   system.autoUpgrade.enable = true;
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "unstable"; # Did you read the comment?
 }
 
