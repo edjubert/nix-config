@@ -47,6 +47,7 @@
     slack
     steam
     whatsapp-for-linux
+    signal-desktop
 
     # iPhone
     ifuse
