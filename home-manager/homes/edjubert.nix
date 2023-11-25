@@ -3,7 +3,7 @@
 {
   home.username = "edjubert";
   home.homeDirectory = "/home/edjubert";
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
   home.sessionPath = [
     "$HOME/.local/bin"
   ];
