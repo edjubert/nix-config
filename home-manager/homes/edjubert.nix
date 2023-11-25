@@ -99,6 +99,7 @@
 
     # Terminal
     alacritty
+    any-nix-shell
     foot
     foot
     bat

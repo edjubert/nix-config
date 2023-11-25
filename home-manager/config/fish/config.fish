@@ -7,3 +7,5 @@ function fish_mode_prompt
 end
 
 set fish_greeting
+
+any-nix-shell fish --info-right | source
