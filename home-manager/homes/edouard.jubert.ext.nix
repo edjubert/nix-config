@@ -183,7 +183,7 @@
   };
 
   programs.schizofox = {
-    enable = true;
+    enable = false;
 
     theme = {
       background-darker = "181825";
@@ -201,18 +201,9 @@
 
     search = {
       defaultSearchEngine = "Google";
-      removeEngines = ["Brave" "Bing" "Amazon.com" "eBay" "Twitter" "Wikipedia"];
-      searxUrl = "https://searx.be";
-      searxQuery = "https://searx.be/search?q={searchTerms}&categories=general";
-      addEngines = [
-        {
-          Name = "Etherscan";
-          Description = "Checking balances";
-          Alias = "!eth";
-          Method = "GET";
-          URLTemplate = "https://etherscan.io/search?f=0&q={searchTerms}";
-        }
-      ];
+      removeEngines = ["Bing" "Brave" "Amazon.com" "eBay" "Twitter" "Wikipedia"];
+      searxUrl = "https://www.google.com";
+      searxQuery = "https://www.google.com/search?q={searchTerms}";
     };
 
     security = {
@@ -224,7 +215,128 @@
     misc = {
       drmFix = true;
       disableWebgl = false;
+
+      bookmarks = [
+        {
+          Title = "Confluence Care";
+          URL = "https://confluence.ets.mpi-internal.com/pages/viewpage.action?spaceKey=BDCCrew&title=BDC+Care";
+          Placement = "toolbar";
+        }
+        {
+          Title = "jira";
+          URL = "https://jira.ets.mpi-internal.com/secure/RapidBoard.jspa?rapidView=2003736&quickFilter=2028932";
+          Placement = "toolbar";
+        }
+        {
+          Title = "Datadog PRE";
+          URL = "https://leboncoinpre.datadoghq.com/apm/home";
+          Placement = "toolbar";
+        }
+        {
+          Title = "Datadog PRO";
+          URL = "https://leboncoinpro.datadoghq.com/apm/home";
+          Placement = "toolbar";
+        }
+        {
+          Title = "merged - Sophie";
+          URL = "https://review.leboncoin.ci/q/owner:sophie.tarrit@adevinta.com+status:merged";
+          Placement = "toolbar";
+        }
+        {
+          Title = "opened - Sophie";
+          URL = "https://review.leboncoin.ci/q/owner:sophie.tarrit@adevinta.com+-status:abandoned+-status:merged";
+          Placement = "toolbar";
+        }
+        {
+          Title = "merged - Edouard";
+          URL = "https://review.leboncoin.ci/q/owner:edouard.jubert.ext@adevinta.com+status:merged";
+          Placement = "toolbar";
+        }
+        {
+          Title = "opened - Edouard";
+          URL = "https://review.leboncoin.ci/q/owner:edouard.jubert.ext@adevinta.com+status:merged";
+          Placement = "toolbar";
+        }
+        {
+          Title = "QA3";
+          URL = "https://master.next.ariane.leboncoin.ci/";
+          Placement = "toolbar";
+        }
+        {
+          Title = "SQLPad Staging";
+          URL = "https://sqlpad.infra.stg.leboncoin.io";
+          Placement = "toolbar";
+        }
+        {
+          Title = "SQLPad Prod";
+          URL = "https://sqlpad.infra.prd.leboncoin.io";
+          Placement = "toolbar";
+        }
+        {
+          Title = "Concourse";
+          URL = "https://delivery.leboncoin.ci/";
+          Placement = "toolbar";
+          Folder = "LBC Tools";
+        }
+        {
+          Title = "Backstage";
+          URL = "https://backstage.leboncoin.ci";
+          Placement = "toolbar";
+          Folder = "LBC Tools";
+        }
+        {
+          Title = "Vault CG";
+          URL = "https://vault.leboncoin.ci:8200/ui/vault/secrets/apps/list/team-consumergoods/";
+          Placement = "toolbar";
+          Folder = "LBC Tools";
+        }
+        {
+          Title = "mim";
+          URL = "https://mim.qa3.bon-coin.net/";
+          Placement = "toolbar";
+          Folder = "LBC Tools";
+        }
+        {
+          Title = "Status S2S";
+          URL = "https://docs.google.com/spreadsheets/d/1Cf4ruTaWzeJ5MBM9rT6TrsZoelZxPNh_FzAigrDi8XM/edit#gid=997063470";
+          Placement = "toolbar";
+          Folder = "Statuses";
+        }
+        {
+          Title = "Status MR";
+          URL = "https://docs.google.com/spreadsheets/d/1Cf4ruTaWzeJ5MBM9rT6TrsZoelZxPNh_FzAigrDi8XM/edit#gid=0";
+          Placement = "toolbar";
+          Folder = "Statuses";
+        }
+        {
+          Title = "potin";
+          URL = "https://meet.google.com/djx-fzaz-syd";
+          Placement = "toolbar";
+          Tags = "meet";
+          Keyword = "potin";
+        }
+        {
+          Title = "Rust by example";
+          URL = "https://www.cs.brandeis.edu/~cs146a/rust/rustbyexample-02-21-2015/index.html";
+          Placement = "toolbar";
+          Folder = "Other Bookmarks";
+        }
+        {
+          Title = "Goplayground";
+          URL = "https://goplay.tools/";
+          Placement = "toolbar";
+          Folder = "Other Bookmarks";
+        }
+      ];
     };
+
+    extensions.extraExtensions = {
+      "vimium-c@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/4098265/vimium-c-1.99.99.xpi";
+      "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/file/41104713/sponsorblock-5.4.5.xpi";
+      "{d634138d-c276-4fc8-924b-40a0ea21d284}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4168788/latest.xpi";
+      "firefox-alpenglow@mozilla.org".install_url = "resource://builtin-themes/alpenglow/";
+    };
+
   };
 
   xdg.configFile."alacritty".source = ../config/alacritty;
