@@ -1,18 +1,39 @@
 { config, pkgs, inputs, lib, ... }:
 
 {
-  home.username = "edouard.jubert.ext";
-  home.homeDirectory = "/home/edouard.jubert.ext";
-  home.stateVersion = "23.05"; # Please read the comment before changing.
-  home.sessionPath = [
-    "$HOME/.local/bin"
-  ];
-
+  home = {
+    username = "edouard.jubert.ext";
+    homeDirectory = "/home/edouard.jubert.ext";
+    stateVersion = "23.05"; # Please read the comment before changing.
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
+  };
 
   targets.genericLinux.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (pkg: true);
+    };
+  };
+
+
+  gtk = {
+    enable = true;
+    # cursorTheme = {
+    #   name = "breeze";
+    #   package = pkgs.gnome-breeze;
+    #   size = 16;
+    # };
+
+    cursorTheme = {
+      name = "Catppuccin";
+      package = pkgs.catppuccin-cursors.mochaPink;
+      size = 16;
+    };
+  };
 
   dconf.settings = {
     "org/gnome/shell" = {
@@ -54,115 +75,20 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    # cursorTheme = {
-    #   name = "breeze";
-    #   package = pkgs.gnome-breeze;
-    #   size = 16;
-    # };
+  home.packages = [];
 
-    cursorTheme = {
-      name = "Catppuccin";
-      package = pkgs.catppuccin-cursors.mochaPink;
-      size = 16;
-    };
-  };
-
-  home.packages = with pkgs; [
-    # Dev
-    nodejs
-    deno
-    go
-    rustup
-    sassc
-    hyprpicker
-
-    # IDE
-    jetbrains.datagrip
-    jetbrains.idea-ultimate
-
-    # Theme
-    source-code-pro
-    nerdfonts
-
-    # Apps
-    _1password
-    _1password-gui
-    slack
-    whatsapp-for-linux
-
-    # iPhone
-    ifuse
-    libimobiledevice
-
-    # Git
-    gh
-    git
-    lazygit
-
-    # Video
-    ffmpeg
-    (mpv.override {
-      scripts = [mpvScripts.mpris];
-    })
-
-    # Browsers
-    chromium
-    firefox
-
-    # Gnome
-    gnomeExtensions.backslide
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.mouse-follows-focus
-    gnomeExtensions.pop-shell
-    gnomeExtensions.rounded-window-corners
-    gnomeExtensions.switch-workspaces-on-active-monitor
-    gnomeExtensions.appindicator
-    gnomeExtensions.tray-icons-reloaded
-    gnome.nautilus
-
-    # Tools
-    brightnessctl
-    cliphist
-    gammastep
-    grim
-    pamixer
-    pulsemixer
-    rofi
-    slurp
-    swappy
-    swaylock-effects
-    swww
-    wl-clipboard
-    wf-recorder
-    wayshot
-    flameshot
-    k9s
-    wlogout
-
-    # Terminal related
-    foot
-    bat
-    direnv
-    fzf
-    htop
-    jq
-    killall
-    ripgrep
-    any-nix-shell
+  imports = [
+    ../packages/apps.nix
+    ../packages/browser.nix
+    ../packages/dev.nix
+    ../packages/git.nix
+    ../packages/gnomeExtensions.nix
+    ../packages/iphone.nix
+    ../packages/terminal.nix
+    ../packages/theme.nix
+    ../packages/tools.nix
+    ../packages/video.nix
   ];
-
-  # fonts = {
-  #   fontconfig = {
-  #     enable = true;
-  #     defaultFonts = {
-  #       serif = [ "Ubuntu" ];
-  #       sansSerif = [ "Ubuntu" ];
-  #       monospace = [ "Iosevka NF" ];
-  #     };
-  #   };
-  # };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
