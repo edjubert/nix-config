@@ -14,6 +14,7 @@ in {
     whatsapp-for-linux
     signal-desktop
     (helpers.nixGLIntelWrap wdisplays)
+    (helpers.nixGLIntelWrap chiaki)
   ];
 }
 

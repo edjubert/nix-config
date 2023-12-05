@@ -7,18 +7,7 @@ let helpers = import ../modules/nixGL/nixGL.nix {
   };
 
 in {
-  home.packages = with pkgs; [
-    (helpers.nixGLIntelWrap alacritty)
-    bat
-    direnv
-    fzf
-    htop
-    jq
-    killall
-    ripgrep
-    zellij
-    any-nix-shell
+  home.packages = [
+    (helpers.nixGLIntelWrap pkgs.jetbrains-toolbox)
   ];
 }
-
-

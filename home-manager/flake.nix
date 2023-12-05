@@ -23,6 +23,9 @@
         url = "github:sopa0/hyprsome";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixGL = {
+        url = "github:guibou/nixGL";
+    };
 
     schizofox = {
       url = "github:schizofox/schizofox";
@@ -33,10 +36,14 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+          system = system;
+          overlays = [ nixGL.overlay ];
+        };
+      # pkgs = inputs.nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."edouard.jubert.ext" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
