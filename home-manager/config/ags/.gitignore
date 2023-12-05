@@ -6,3 +6,5 @@ settings.json
 scss/generated.scss
 scss/additional.scss
 scss/.goutputstream-*
+types/*
+.idea/*
