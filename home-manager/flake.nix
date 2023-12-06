@@ -7,7 +7,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-   gophrland = {
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    gophrland = {
       url = "github:edjubert/gophrland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -19,12 +23,27 @@
         url = "github:sopa0/hyprsome";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixGL = {
+        url = "github:guibou/nixGL";
+    };
+
+    schizofox = {
+      url = "github:schizofox/schizofox";
+      # url = "path:/home/sioodmy/dev/schizofox";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
-  outputs = { nixpkgs, home-manager, gophrland, ags, hyprsome, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+          system = system;
+          overlays = [ nixGL.overlay ];
+        };
+      # pkgs = inputs.nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."edouard.jubert.ext" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -32,6 +51,7 @@
         modules = [
           ./homes/edouard.jubert.ext.nix
 
+          inputs.schizofox.homeManagerModule
           {
             home.packages = [
               ags.packages.${system}.default
@@ -47,6 +67,16 @@
 
         modules = [
           ./homes/edjubert.nix
+
+          inputs.schizofox.homeManagerModule
+          hyprland.homeManagerModules.default
+          {
+            wayland.windowManager.hyprland = {
+              enable = true;
+              nvidiaPatches = true;
+              xwayland.enable = true;
+            };
+          }
           {
             home.packages = [
               ags.packages.${system}.default

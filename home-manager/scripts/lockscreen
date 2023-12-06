@@ -1,25 +1,44 @@
 #!/bin/bash
 
 # Colors
-bg='1e1e2e' bgl='313244' fg='d9e0ee'
+bg='1e1e2e11' bgl='313244' fg='d9e0ee'
 red='f38ba8' green='a6e3a1' yellow='f9e2af'
 blue='89b4fa' magenta='cba6f7' cyan='89dceb'
+white='ffffffff'
 alpha='00040000'
-image=$HOME/dotfiles/Wallpapers/hiking_in_space-blur.png
+# image=$HOME/.config/swww/dark/hiking_in_space.png
+image=$HOME/.config/swww/wall.set
+dateformat=""
+timeformat="%H:%M"
 
 # CMD
 swaylock \
-	--screenshots \
 	--clock \
+	--timestr $timeformat \
 	--indicator \
-	--indicator-radius 100 \
-	--indicator-thickness 7 \
-	\
-	--effect-blur 7x5 \
-	--effect-vignette 0.5:0.5 \
+	--indicator-radius 200 \
+	--indicator-thickness 1 \
+	--effect-blur 10x5 \
+	--effect-vignette 0.9:0.9 \
+	--font Ubuntu \
+	--font-size 50 \
+	--text-color $white \
+	--image $image \
 	--ring-color $bg \
+	--inside-clear-color $bg \
+	--text-clear-color $yellow \
+	--ring-clear-color $yellow \
+	--line-clear-color 00000000 \
+	--inside-wrong-color $bg \
+	--text-wrong-color $red \
+	--ring-wrong-color $red \
+	--line-wrong-color $red \
+	--inside-ver-color $bg \
+	--text-ver-color $cyan \
+	--ring-ver-color $cyan \
+	--line-ver-color $cyan \
 	--key-hl-color $green \
-	--line-color 00000000 \
-	--inside-color 00000088 \
-	--separator-color 00000000 \
+	--line-color $bg \
+	--inside-color $bg \
+	--separator-color $bg \
 	--fade-in 0.2 # --effect-pixelate 60 \

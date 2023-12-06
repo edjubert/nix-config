@@ -3,7 +3,7 @@ return {
   { "f-person/git-blame.nvim" },
   { "airblade/vim-gitgutter" },
   { "tree-sitter/tree-sitter-go" },
-  { "windwp/nvim-spectre" },
+  { "nvim-pack/nvim-spectre" },
   { "danilamihailov/beacon.nvim" },
   {
     "phaazon/hop.nvim",
