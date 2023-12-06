@@ -36,6 +36,7 @@
     jetbrains.goland
     jetbrains.datagrip
     jetbrains.idea-ultimate
+    jetbrains-toolbox
 
     # Theme
     nerdfonts

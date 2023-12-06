@@ -126,6 +126,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  services.flatpak.enable = true;
 
   users.users.edjubert = {
     isNormalUser = true;
@@ -138,6 +139,10 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     description = "Namoureuse";
+    packages = with pkgs; [
+      flatpak
+      gnome.gnome-software
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
