@@ -165,7 +165,6 @@
   xdg.configFile."hypr".source      = ../config/hyprland;
   xdg.configFile."foot".source      = ../config/foot;
   xdg.configFile."zellij".source      = ../config/zellij;
-  # xdg.configFile."ags".source      = ../config/ags;
 
   home.file = {};
 
