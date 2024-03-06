@@ -103,6 +103,7 @@
     shellAliases = {
       ll = "ls -l";
       lla = "ls -la";
+      lg = "lazygit";
       run-tests = "cd $HOME/workspace/go; /usr/bin/bash $HOME/workspace/go/build/run-tests; notify-send \"LBC tests finished\"";
     };
 
