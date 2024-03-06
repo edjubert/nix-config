@@ -21,7 +21,7 @@
 
 
   gtk = {
-    enable = true;
+    enable = false;
     # cursorTheme = {
     #   name = "breeze";
     #   package = pkgs.gnome-breeze;
@@ -94,6 +94,28 @@
   programs.direnv.nix-direnv.enable = true;
 
   programs.fish.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      lla = "ls -la";
+      run-tests = "cd $HOME/workspace/go; /usr/bin/bash $HOME/workspace/go/build/run-tests; notify-send \"LBC tests finished\"";
+    };
+
+    initExtra = ''
+      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+    '';
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" "docker" "kubectl" ];
+      theme = "half-life";
+    };
+  };
 
   programs.git = {
     enable = true;

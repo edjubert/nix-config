@@ -12,6 +12,7 @@ in {
     _1password-gui
     slack
     whatsapp-for-linux
+    pywal
     # signal-desktop # it still returns to update the signal version, have to create a flake
     (helpers.nixGLIntelWrap wdisplays)
     (helpers.nixGLIntelWrap chiaki)

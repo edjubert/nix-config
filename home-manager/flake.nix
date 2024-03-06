@@ -34,9 +34,30 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    hyprlang = {
+      url = "github:hyprwm/hyprlang";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, hyprlang, hypridle, hyprlock, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -57,6 +78,9 @@
               ags.packages.${system}.default
               gophrland.packages.${system}.default
               hyprsome.packages.${system}.default
+              hyprlang.packages.${system}.default
+              #hyprlock.packages.${system}.default
+              #hypridle.packages.${system}.default
             ];
           }
         ];
