@@ -2,5 +2,7 @@
 
 BIN_PATH=/home/edouard.jubert.ext/.nix-profile/bin
 echo "[]" >/home/edouard.jubert.ext/.cache/ags/notifications/notifications.json
-$BIN_PATH/ags -q
-$BIN_PATH/ags
+while true;
+  $BIN_PATH/ags -q
+  $BIN_PATH/ags
+end
