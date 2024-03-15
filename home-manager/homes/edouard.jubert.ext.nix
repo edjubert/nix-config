@@ -99,6 +99,7 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
+    
 
     shellAliases = {
       ll = "ls -l";
@@ -107,14 +108,49 @@
       run-tests = "cd $HOME/workspace/go; /usr/bin/bash $HOME/workspace/go/build/run-tests; notify-send \"LBC tests finished\"";
     };
 
+    plugins = [
+      {
+        name = "fzf-zsh-plugin";
+        file = "fzf-zsh.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "unixorn";
+          repo = "fzf-zsh-plugin";
+          rev = "aec6776313bd321c240900acc6fd651ee5f487b0";
+          sha256 = "1xXVe5sefuXvLN7LWEChUOyl2QH+MnDijF1WwhHKwMI=";
+        };
+      }
+    ];
+
     initExtra = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+      zstyle ':autocomplete:*' default-contexte history-incremental-search-backward
+      bindkey "^V" edit-command-line
+
+      export JIRA_RAPID_BOARD=true
+      export JIRA_DEFAULT_ACTION="dashboard"
+      export MDP_COLISSIMO="WebHook2020!Colissimo"
+      export NIX_PATH="$NIX_PATH:$HOME/.nix-defexpr/channels"
     '';
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" "docker" "kubectl" ];
+      plugins = [
+        "direnv"
+        "docker"
+        "fzf"
+        "gh"
+        "git"
+        "history-substring-search"
+        "jira"
+        "kubectl"
+        "sudo"
+        "themes"
+        "web-search"
+        "z"
+        "zsh-interactive-cd"
+      ];
       theme = "half-life";
+      custom = "$HOME/workspace/nix-config/home-manager/config/oh-my-zsh";
     };
   };
 
