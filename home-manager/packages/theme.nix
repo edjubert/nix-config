@@ -10,6 +10,7 @@ in {
   home.packages = with pkgs; [
     source-code-pro
     nerdfonts
+    whitesur-icon-theme
   ];
 }
 

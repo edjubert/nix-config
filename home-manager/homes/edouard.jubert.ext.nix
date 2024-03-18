@@ -79,7 +79,7 @@
 
   imports = [
     ../packages/apps.nix
-    ../packages/browser.nix
+    ../packages/nixGL_apps.nix
     ../packages/dev.nix
     ../packages/git.nix
     ../packages/gnomeExtensions.nix
@@ -87,7 +87,6 @@
     ../packages/terminal.nix
     ../packages/theme.nix
     ../packages/tools.nix
-    ../packages/video.nix
   ];
 
   programs.direnv.enable = true;
@@ -165,7 +164,6 @@
   xdg.configFile."hypr".source      = ../config/hyprland;
   xdg.configFile."foot".source      = ../config/foot;
   xdg.configFile."zellij".source      = ../config/zellij;
-  # xdg.configFile."ags".source      = ../config/ags;
 
   home.file = {};
 

@@ -34,9 +34,15 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, gophrland, ags, hyprsome, nixGL, hyprlock, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -69,14 +75,6 @@
           ./homes/edjubert.nix
 
           inputs.schizofox.homeManagerModule
-          hyprland.homeManagerModules.default
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-              nvidiaPatches = true;
-              xwayland.enable = true;
-            };
-          }
           {
             home.packages = [
               ags.packages.${system}.default

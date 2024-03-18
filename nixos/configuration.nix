@@ -26,21 +26,16 @@
   };
 
   users.extraGroups.vboxusers.members = [ "edjubert" ];
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
+  # virtualisation.docker = {
+  #   enable = true;
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
 
   boot.kernelParams = [
     "quiet"
-    "tuxedo_keyboard.mode=1"
-    "tuxedo_keyboard.brightness=25"
-    "tuxedo_keyboard.color_left=0x0000ff"
-    "tuxedo_keyboard.color_right=0x00ffff"
-    "tuxedo_keyboard.color_center=0xffffff"
     "module_blacklist=i915"
   ];
 
@@ -59,23 +54,21 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     # font = "Lat2-Terminus16";
-    keyMap = "colemak";
+    # keyMap = "colemak";
     useXkbConfig = false; # use xkbOptions in tty.
   };
 
   programs.fish.enable = true;
+  programs.steam.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-  programs.hyprland.nvidiaPatches = true;
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1v"
-    "nodejs-14.21.3"
-    "electron-13.6.9"
   ];
 
   services.usbmuxd = {
@@ -90,9 +83,11 @@
     };
     desktopManager.gnome.enable = true;
 
+    xkb = {
+      layout = "us";
+      options = "colemak,caps:escape";
+    };
     enable = true;
-    layout = "us";
-    xkbOptions = "colemak,caps:escape";
     videoDrivers = ["nvidia"];
   };
 
@@ -131,7 +126,7 @@
   users.users.edjubert = {
     isNormalUser = true;
     description = "Edouard";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     shell = pkgs.fish;
   };
 
@@ -161,6 +156,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    foot
+    kitty
+    alacritty
     catppuccin-gtk
     gnome.adwaita-icon-theme
     libcamera
@@ -176,7 +174,6 @@
   ]) ++ (with pkgs.gnome; [
     cheese
     gnome-music
-    gedit
     epiphany
     geary
     totem
@@ -186,11 +183,11 @@
     atomix
   ]);
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 7d";
+  # };
 
   system.userActivationScripts = {
     # startXdgDesktopPortal.text = ''
@@ -228,8 +225,6 @@
       fi
     '';
   };
-
-  system.autoUpgrade.enable = true;
 
   system.stateVersion = "unstable"; # Did you read the comment?
 }

@@ -8,11 +8,11 @@ let helpers = import ../modules/nixGL/nixGL.nix {
 
 in {
   home.packages = with pkgs; [
-    (helpers.nixGLIntelWrap ffmpeg)
-    (helpers.nixGLIntelWrap kooha)
-    (helpers.nixGLIntelWrap (mpv.override {
+    ffmpeg
+    kooha
+    (mpv.override {
       scripts = [mpvScripts.mpris];
-    }))
+    })
   ];
 }
 

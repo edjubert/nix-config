@@ -7,8 +7,7 @@ let helpers = import ../modules/nixGL/nixGL.nix {
   };
 
 in {
-  home.packages = [
-    (helpers.nixGLIntelWrap pkgs.firefox)
-    (helpers.nixGLIntelWrap pkgs.chromium)
+  home.packages = with pkgs; [
+    firefox
   ];
 }

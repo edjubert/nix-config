@@ -7,7 +7,7 @@ let helpers = import ../modules/nixGL/nixGL.nix {
   };
 
 in {
-  home.packages = [
-    (helpers.nixGLIntelWrap pkgs.jetbrains-toolbox)
+  home.packages = with pkgs; [
+    jetbrains-toolbox
   ];
 }

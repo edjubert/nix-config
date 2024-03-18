@@ -17,6 +17,9 @@ in {
     gnomeExtensions.appindicator
     gnomeExtensions.tray-icons-reloaded
     gnome.nautilus
+    gnome.sushi
+    gnome.eog
+    gnome-photos
   ];
 }
 

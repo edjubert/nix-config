@@ -24,110 +24,67 @@
   home.packages = with pkgs; [
     # Dev
     wayland-protocols
-    nodejs
-    deno
-    go
-    rustup
-    sassc
-    gcc
+    pkg-config
+    x265
+    libde265
+    libjpeg
+    libtool
+    libheif
     cmake
-
-    # IDE
-    jetbrains.goland
-    jetbrains.datagrip
-    jetbrains.idea-ultimate
-    jetbrains-toolbox
-
-    # Theme
-    nerdfonts
-    whitesur-icon-theme
+    gthumb
+    # jetbrains.goland
 
     # Apps
-    _1password
-    _1password-gui
-    slack
-    steam
-    whatsapp-for-linux
-    signal-desktop
-
-    # iPhone
-    ifuse
-    libimobiledevice
-    imlib2
-
-    # Git
-    gh
-    git
-    lazygit
-
-    # Video
-    ffmpeg
-    (mpv.override {
-      scripts = [mpvScripts.mpris];
-    })
-
-    # Browsers
-    chromium
-    firefox
-
-    # Gnome
-    gnomeExtensions.appindicator
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.pop-shell
-    gnome.nautilus
-    gnome.sushi
-    gnome.eog
-    gnome-photos
+    kicad
+    nwg-look
+    chiaki
 
     # Tools
-    brightnessctl
-    cliphist
-    gammastep
-    grim
     networkmanagerapplet
-    pamixer
-    pulsemixer
-    rofi
-    slurp
-    swappy
-    swaylock-effects
-    swww
     wdisplays
-    wl-clipboard
-    wlogout
-    wf-recorder
     imagemagick
 
     # Terminal
     alacritty
-    any-nix-shell
-    foot
-    foot
-    bat
-    direnv
-    fzf
-    htop
-    jq
-    killall
-    ripgrep
+  ];
+
+  imports = [
+    ../packages/apps.nix
+    ../packages/browser.nix
+    ../packages/dev.nix
+    ../packages/git.nix
+    ../packages/gnomeExtensions.nix
+    ../packages/ide.nix
+    ../packages/iphone.nix
+    ../packages/terminal.nix
+    ../packages/theme.nix
+    ../packages/tools.nix
+    ../packages/video.nix
   ];
 
   gtk = {
     enable = true;
-    # iconTheme = {
-    #   package = pkgs.whitesur-icon-theme;
-    #   name = "whitesur-icon-theme";
-    # };
-    # theme = {
-    #   name = "Catppuccin-Macchiato-Compact-Peach-dark";
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "peach" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
 
-    #   package = pkgs.catppuccin-gtk.override {
-    #     accents = [ "peach" ];
-    #     size = "compact";
-    #     tweaks = [ "rimless" "black" ];
-    #     variant = "macchiato";
-    #   };
-    # };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 
   programs.direnv.enable = true;

@@ -8,7 +8,6 @@ let helpers = import ../modules/nixGL/nixGL.nix {
 
 in {
   home.packages = with pkgs; [
-    (helpers.nixGLIntelWrap alacritty)
     bat
     direnv
     fzf
