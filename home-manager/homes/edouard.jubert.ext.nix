@@ -29,8 +29,8 @@
     # };
 
     cursorTheme = {
-      name = "Catppuccin";
-      package = pkgs.catppuccin-cursors.mochaPink;
+      name = "Bibata";
+      package = pkgs.bibata-cursors;
       size = 16;
     };
   };
@@ -75,7 +75,10 @@
     };
   };
 
-  home.packages = [];
+  home.packages = [
+    pkgs.blueberry
+    pkgs.fd
+  ];
 
   imports = [
     ../packages/apps.nix
@@ -154,6 +157,7 @@
     };
   };
 
+  # programs.hyprlock.enable = true;
   programs.git = {
     enable = true;
     userName = "edjubert";

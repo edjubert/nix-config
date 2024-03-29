@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/home/edouard.jubert.ext/.nix-profile/bin/grim -g "$(/home/edouard.jubert.ext/.nix-profile/bin/slurp)" - | /home/edouard.jubert.ext/.nix-profile/bin/swappy -f -
+# /home/edouard.jubert.ext/.nix-profile/bin/grim -g "$(/home/edouard.jubert.ext/.nix-profile/bin/slurp)" - | /home/edouard.jubert.ext/.nix-profile/bin/swappy -f -
+/home/edouard.jubert.ext/.nix-profile/bin/grim -g "$(/home/edouard.jubert.ext/.nix-profile/bin/slurp -d -c '#008080aa' -b '#00808011' -s '#00000000')" - | /usr/local/bin/satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%s').png

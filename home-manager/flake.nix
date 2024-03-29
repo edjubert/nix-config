@@ -55,9 +55,17 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    satty = {
+      url = "github:gabm/Satty";
+    };
+    
+    walker = {
+      url = "github:abenz1267/walker";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprlang, hypridle, hyprlock, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, hyprland, satty, walker, hyprlang, hypridle, hyprlock, gophrland, ags, hyprsome, nixGL, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -70,19 +78,22 @@
         inherit pkgs;
 
         modules = [
-          ./homes/edouard.jubert.ext.nix
-
           inputs.schizofox.homeManagerModule
+          # inputs.hyprlock.homeManagerModules.hyprlock
           {
             home.packages = [
               ags.packages.${system}.default
               gophrland.packages.${system}.default
               hyprsome.packages.${system}.default
               hyprlang.packages.${system}.default
-              #hyprlock.packages.${system}.default
-              #hypridle.packages.${system}.default
+              walker.packages.${system}.default
+              # satty.packages.${system}.default
+              # hyprlock.packages.${system}.default
+              # hypridle.packages.${system}.default
             ];
           }
+
+          ./homes/edouard.jubert.ext.nix
         ];
       };
 
